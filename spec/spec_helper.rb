@@ -14,7 +14,13 @@ require 'rails_app/config/environment'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'roo'
-require 'byebug'
+begin
+  # Used for Ruby 2.x
+  require 'byebug'
+rescue LoadError
+  # Used for Ruby 3.x
+  require 'debug'
+end
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -26,6 +32,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
+  config.filter_run_when_matching :focus
 end
 
 # TODO: move to the support folder
