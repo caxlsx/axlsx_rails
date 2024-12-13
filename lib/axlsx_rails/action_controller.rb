@@ -4,7 +4,7 @@ require 'action_controller'
 
 if Rails.version.to_f >= 5
   unless Mime[:xlsx]
-  	Mime::Type.register 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', :xlsx
+    Mime::Type.register 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', :xlsx
   end
 else
   unless defined? Mime::XLSX
